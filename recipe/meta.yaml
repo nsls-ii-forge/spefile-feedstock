@@ -1,0 +1,38 @@
+{% set name = "spefile" %}
+{% set version = "1.6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: src
+
+build:
+  number: 1
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - python
+    - pip
+  run:
+    - python
+    - numpy
+
+test:
+  imports:
+    - spefile
+
+about:
+  # Long term goal is to have the src/ folder in this recipe as a stand-alone
+  # project on github.
+  home: https://github.com/stuwilkins/pyspec
+  license: GPL v3.0
+  license_file: LICENSE.txt
+  summary: >
+    Reader for SPE files part of pyspec a set of python routines for data
+    analysis of x-ray scattering experiments
+  dev_url: https://github.com/stuwilkins/pyspec
+  doc_url: https://pythonhosted.org/pyspec
